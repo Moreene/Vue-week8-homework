@@ -15,6 +15,19 @@
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      img: '',
+    }
+  },
+  created() {
+    this.img = this.$route.meta.BannerImage;
+  },
+}
+</script>
+
 <style lang="scss" scoped>
 @import "@/assets/all.scss";
 
@@ -42,16 +55,3 @@
   }
 }
 </style>
-
-<script>
-export default {
-  data() {
-    return {
-      img: '',
-    }
-  },
-  created() {
-    this.img = this.$route.meta.BannerImage;
-  },
-}
-</script>

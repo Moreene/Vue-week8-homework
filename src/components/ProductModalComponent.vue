@@ -185,12 +185,6 @@
   </div>
 </template>
 
-<style scoped>
-.modal-img {
-  height: 200px;
-}
-</style>
-
 <script>
 import axios from 'axios';
 import Modal from 'bootstrap/js/dist/modal';
@@ -256,3 +250,9 @@ export default {
   },
 }
 </script>
+
+<style scoped>
+.modal-img {
+  height: 200px;
+}
+</style>
