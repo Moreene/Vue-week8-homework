@@ -22,7 +22,7 @@
                   <p class="text-white mb-8">複製圖片網址</p>
                   <div class="input-group mb-16">
                     <input type="text" class="form-control" v-model="url" ref="imgUrl">
-                    <button class="btn btn-gray" type="button" @click="copyUrl"><i class="bi bi-copy"></i></button>
+                    <button type="button" class="btn btn-gray" @click="copyUrl"><i class="bi bi-copy"></i></button>
                   </div>
                   <p class="text-white mb-8">圖片預覽</p>
                   <img :src="url" alt="圖片預覽" style="width: 100%;height: 200px;" v-if="url">
@@ -54,12 +54,12 @@
                   </div>
                   <!-- 若陣列為空或最後一個元素為真，則顯示「新增圖片」按鈕；否則，顯示“刪除圖片”按鈕 -->
                   <div v-if="!product.imagesUrl.length || product.imagesUrl.at(-1).trim()">
-                    <button class="btn btn-outline-primary btn-sm d-block w-100" @click="product.imagesUrl.push('')">
+                    <button type="button" class="btn btn-outline-primary btn-sm d-block w-100" @click="product.imagesUrl.push('')">
                       新增圖片
                     </button>
                   </div>
                   <div v-else>
-                    <button class="btn btn-outline-danger btn-sm d-block w-100" @click="product.imagesUrl.pop()">
+                    <button type="button" class="btn btn-outline-danger btn-sm d-block w-100" @click="product.imagesUrl.pop()">
                       刪除圖片
                     </button>
                   </div>
@@ -67,7 +67,7 @@
                 <!-- 如果product.imagesUrl為空，則顯示此按鈕，允許新增第一張圖像。 -->
                 <!-- product.imagesUrl=['']替換了數組引用 -->
                 <div v-else>
-                  <button class="btn btn-outline-primary btn-sm d-block w-100"
+                  <button type="button" class="btn btn-outline-primary btn-sm d-block w-100"
                     @click="product.imagesUrl = [product.imageUrl, '']">
                     新增圖片
                   </button>
