@@ -112,7 +112,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/all.scss';
+@import '@/assets/helpers/mixin.scss';
 
 .google-map {
   height: 250px;

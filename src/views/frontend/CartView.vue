@@ -224,7 +224,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@/assets/all.scss';
+@import '@/assets/helpers/mixin.scss';
 
 .food-img {
   width: 140px;
