@@ -51,10 +51,10 @@ export default {
   methods: {
     checkLogin() {
       axios.post(`${VITE_API}/api/user/check`)
-        .then(res => {
+        .then(() => {
           this.isShow = true;
         })
-        .catch(err => {
+        .catch(() => {
           sweetalert('error', '您沒有權限進入!');
           this.$router.push('/adminLogin');
         });
