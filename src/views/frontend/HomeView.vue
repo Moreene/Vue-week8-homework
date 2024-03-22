@@ -20,7 +20,7 @@
   <div class="container">
     <div class="py-72">
       <h3 class="text-center fw-bold mb-16">暢銷餐點</h3>
-      <SwiperComponent :products="sellProducts" class="mb-48"></SwiperComponent>
+      <SwiperComponent :products="sellProducts" class="mb-48"/>
       <div class="text-center">
         <RouterLink to="/categories/recommendation" class="btn btn-secondary link-light text-notoSans px-52 py-8">
           查看更多</RouterLink>

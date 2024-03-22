@@ -26,8 +26,7 @@
           </div>
         </div>
         <div class="col-lg-6">
-          <h2 class="fw-bold mb-24"><span class="text-title d-inline-block position-relative z-1">{{ productDetail.title
-              }}</span></h2>
+          <h2 class="fw-bold mb-24"><span class="text-title d-inline-block position-relative z-1">{{ productDetail.title }}</span></h2>
           <p class="fs-6 text-notoSans mb-32">{{ productDetail.description }}</p>
           <p class="text-notoSans text-gray mb-48 mb-lg-72">食材：
             <template v-for="(item, index) in productDetail.ingredient" :key="'食材'+ index">
@@ -35,8 +34,7 @@
               <span v-if="index < productDetail.ingredient.length - 1" class="text-notoSans text-gray">、</span>
             </template>
           </p>
-          <p class="fs-4 text-notoSans">NT$ {{ productDetail.price }} <span class="fs-7">/ {{ productDetail.unit
-              }}</span></p>
+          <p class="fs-4 text-notoSans">NT$ {{ productDetail.price }} <span class="fs-7">/ {{ productDetail.unit }}</span></p>
           <div class="d-flex">
             <div class="input-group w-50 me-24">
               <button class="btn btn-secondary text-light d-flex justify-content-center align-items-center w-25"
