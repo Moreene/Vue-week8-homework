@@ -24,12 +24,12 @@
                   <div class="input-group w-50 h-85 d-flex align-items-end">
                     <button
                       class="btn btn-secondary text-light d-flex justify-content-center align-items-center w-25 h-85"
-                      type="button" @click="decreaseCartNum(item)" :disabled="item.qty === 1"><i
+                      type="button" @click="decreaseCartNum(item)" :disabled="item.qty === 1 || notice"><i
                         class="bi bi-dash"></i></button>
                     <input type="text" class="form-control text-center h-85" min="1" v-model.number="item.qty" readonly>
                     <button
                       class="btn btn-secondary text-light d-flex justify-content-center align-items-center w-25 h-85"
-                      type="button" @click="increaseCartNum(item)"><i class="bi bi-plus"></i></button>
+                      type="button" @click="increaseCartNum(item)" :disabled="notice"><i class="bi bi-plus"></i></button>
                   </div>
                   <p class="mb-0">NT$ <span class="text-notoSans">{{ item.product.price * item.qty }}</span></p>
                 </div>
@@ -62,17 +62,60 @@
 </template>
 
 <script>
+import axios from 'axios';
 import { mapState, mapActions } from 'pinia';
 import cartStore from '@/stores/cartStore.js';
+import { toast } from '@/methods/sweetalert';
+
+const { VITE_API, VITE_APIPATH } = import.meta.env;
 
 export default {
   computed: {
     ...mapState(cartStore, ['cart']),
   },
+  data(){
+    return{
+      notice: false,
+    }
+  },
   methods: {
-    ...mapActions(cartStore, ['deleteItem', 'increaseCartNum', 'decreaseCartNum']),
+    ...mapActions(cartStore, ['deleteItem','getCart']),
     goToCart() {
       this.$router.push('/cart');
+    },
+    increaseCartNum(item) {
+      item.qty++;
+      const cart = {
+        "product_id": item.product_id,
+        "qty": item.qty
+      };
+      this.notice = true;
+      axios.put(`${VITE_API}/api/${VITE_APIPATH}/cart/${item.id}`, { "data": cart })
+        .then(() => {
+          toast('top', 'success', `已更新 ${item.product.title} 的數量`);
+          this.getCart();
+          this.notice = false;
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    },
+    decreaseCartNum(item) {
+      item.qty--;
+      const cart = {
+        "product_id": item.product_id,
+        "qty": item.qty
+      };
+      this.notice = true;
+      axios.put(`${VITE_API}/api/${VITE_APIPATH}/cart/${item.id}`, { "data": cart })
+        .then(() => {
+          toast('top', 'success', `已更新 ${item.product.title} 的數量`);
+          this.getCart();
+          this.notice = false;
+        })
+        .catch(err => {
+          console.log(err);
+        })
     },
   },
 }
