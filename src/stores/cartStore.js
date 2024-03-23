@@ -37,9 +37,9 @@ export default defineStore('cartStore', {
         },
         // 刪除單一品項
         deleteItem(item) {
-            const itemName = item.product.title
+            const itemName = item.product.title;
             axios.delete(`${VITE_API}/api/${VITE_APIPATH}/cart/${item.id}`)
-                .then(res => {
+                .then(() => {
                     toast('top', 'warning', `已刪除 "${itemName}"`);
                     this.getCart();
                 })
@@ -55,7 +55,7 @@ export default defineStore('cartStore', {
                 "qty": item.qty
             };
             axios.put(`${VITE_API}/api/${VITE_APIPATH}/cart/${item.id}`, { "data": cart })
-                .then(res => {
+                .then(() => {
                     toast('top', 'success', `已更新 ${item.product.title} 的數量`);
                     this.getCart();
                 })
@@ -71,7 +71,7 @@ export default defineStore('cartStore', {
                 "qty": item.qty
             };
             axios.put(`${VITE_API}/api/${VITE_APIPATH}/cart/${item.id}`, { "data": cart })
-                .then(res => {
+                .then(() => {
                     toast('top', 'success', `已更新 ${item.product.title} 的數量`);
                     this.getCart();
                 })
