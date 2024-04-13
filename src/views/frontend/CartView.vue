@@ -9,8 +9,7 @@
           <div class="mb-48">
             <h2 class="h5 bg-gray text-light ps-12 py-16 mb-0" v-if="cart.carts">購物車 ( {{ cart.carts.length }} )
             </h2>
-            <div class="table-responsive border border-dark"
-              :class="{ 'fixed-height': cart.carts && cart.carts.length > 3 }">
+            <div class="table-responsive border border-dark">
               <table class="table table-borderless mb-0">
                 <thead class="border-bottom border-dark text-nowrap">
                   <tr class="text-center">
@@ -34,13 +33,13 @@
                         <div class="d-flex justify-content-center">
                           <div class="input-group w-75 d-flex align-items-end">
                             <button
-                              class="btn btn-secondary text-light d-flex justify-content-center align-items-center d-none d-md-block"
+                              class="btn btn-primary text-light d-flex justify-content-center align-items-center d-none d-md-block"
                               type="button" @click="decreaseCartNum(item)" :disabled="item.qty === 1"><i
                                 class="bi bi-dash"></i></button>
                             <input type="text" class="form-control text-center p-0 py-md-6 px-md-12" min="1"
                               v-model.number="item.qty" readonly>
                             <button
-                              class="btn btn-secondary text-light d-flex justify-content-center align-items-center d-none d-md-block"
+                              class="btn btn-primary text-light d-flex justify-content-center align-items-center d-none d-md-block"
                               type="button" @click="increaseCartNum(item)"><i class="bi bi-plus"></i></button>
                           </div>
                         </div>
@@ -117,7 +116,7 @@
                   <p class="mb-8">優惠代碼</p>
                   <div class="d-flex">
                     <input type="text" class="form-control w-50 border-gray" v-model="coupon">
-                    <button class="btn btn-secondary text-light ms-8" type="button" :disabled="coupon === ''"
+                    <button class="btn btn-outline-dark ms-8" type="button" :disabled="coupon === ''"
                       @click="useCoupon">套用</button>
                   </div>
                 </div>
@@ -263,11 +262,6 @@ export default {
   @include pad {
     width: 100%;
   }
-}
-
-.fixed-height {
-  height: 455px;
-  overflow-y: auto;
 }
 
 .empety-cart {

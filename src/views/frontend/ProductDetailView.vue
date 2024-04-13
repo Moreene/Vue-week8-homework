@@ -188,7 +188,7 @@ export default {
 }
 
 .card {
-  box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.3);
+  box-shadow: 3px 3px 5px rgba($color: #000000, $alpha: 0.1);
 
   &:hover {
     .card-img-overlay {

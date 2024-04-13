@@ -23,12 +23,12 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="input-group w-50 h-85 d-flex align-items-end">
                     <button
-                      class="btn btn-secondary text-light d-flex justify-content-center align-items-center w-25 h-85"
+                      class="btn btn-primary text-light d-flex justify-content-center align-items-center w-25 h-85"
                       type="button" @click="decreaseCartNum(item)" :disabled="item.qty === 1 || notice"><i
                         class="bi bi-dash"></i></button>
                     <input type="text" class="form-control text-center h-85" min="1" v-model.number="item.qty" readonly>
                     <button
-                      class="btn btn-secondary text-light d-flex justify-content-center align-items-center w-25 h-85"
+                      class="btn btn-primary text-light d-flex justify-content-center align-items-center w-25 h-85"
                       type="button" @click="increaseCartNum(item)" :disabled="notice"><i class="bi bi-plus"></i></button>
                   </div>
                   <p class="mb-0">NT$ <span class="text-notoSans">{{ item.product.price * item.qty }}</span></p>

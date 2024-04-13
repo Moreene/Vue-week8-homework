@@ -11,7 +11,7 @@
           線上訂餐，再享85折優惠
           <i class="bi bi-balloon fs-5 text-danger"></i>
         </h3>
-        <RouterLink to="/products" type="button" class="btn btn-secondary link-light text-notoSans px-52 py-8">立即訂餐
+        <RouterLink to="/products" type="button" class="btn btn-primary link-light text-notoSans px-52 py-8">立即訂餐
         </RouterLink>
       </div>
     </div>
@@ -20,11 +20,7 @@
   <div class="container">
     <div class="py-72">
       <h3 class="text-center fw-bold mb-16">暢銷餐點</h3>
-      <SwiperComponent :products="sellProducts" class="mb-48"/>
-      <div class="text-center">
-        <RouterLink to="/categories/recommendation" class="btn btn-secondary link-light text-notoSans px-52 py-8">
-          查看更多</RouterLink>
-      </div>
+      <SwiperComponent :products="sellProducts" />
     </div>
   </div>
   <!-- 訂購須知 -->
@@ -77,7 +73,7 @@
                   <div class="position-absolute w-100 top-50 translate-middle-y">
                     <div class="d-flex justify-content-end">
                       <div
-                        class="tasty-text bg-danger fs-5 fs-lg-4 fw-bold text-light text-notoSans text-align-start py-12 ps-8">
+                        class="tasty-text bg-primary fs-5 fs-lg-4 fw-bold text-light text-notoSans text-align-start py-12 ps-8">
                         {{ item.name }}
                       </div>
                     </div>

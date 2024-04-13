@@ -5,7 +5,7 @@
     </div>
     <div class="py-16">
       <h2 class="fs-6 text-center">{{ item.title }}</h2>
-      <p class="text-center text-danger fw-bold fs-6 mb-20">NT$ <span class="text-notoSans">
+      <p class="text-center fw-bold fs-6 mb-20">NT$ <span class="text-notoSans">
           {{ item.price }}</span></p>
       <div class="text-center">
         <button type="button" class="btn btn-primary link-light px-44" @click.prevent.stop="addCart(item.id)">加入購物車</button>
