@@ -55,14 +55,18 @@ export default {
   },
   methods: {
     checkLogin() {
-      axios.post(`${VITE_API}/api/user/check`)
-        .then(() => {
-          this.isShow = true;
-        })
-        .catch(() => {
-          sweetalert('error', '您沒有權限進入!');
-          this.$router.push('/adminLogin');
-        });
+      const token = document.cookie.replace(/(?:(?:^|.*;\s*)myToken\s*=\s*([^;]*).*$)|^.*$/, "$1");
+      if (token) {
+        axios.defaults.headers.common['Authorization'] = token;
+        axios.post(`${VITE_API}/api/user/check`, { api_token: token })
+          .then(() => {
+            this.isShow = true;
+          })
+          .catch(() => {
+            sweetalert('error', '您沒有權限進入!');
+            this.$router.push('/adminLogin');
+          });
+      };
     },
     hideNavbar() {
       const navbar = this.$refs.collapse;
@@ -108,9 +112,6 @@ export default {
     },
   },
   mounted() {
-    const token = document.cookie.replace(
-      /(?:(?:^|.*;\s*)myToken\s*\=\s*([^;]*).*$)|^.*$/, "$1",);
-    axios.defaults.headers.common['Authorization'] = token;
     this.checkLogin();
   },
 }
