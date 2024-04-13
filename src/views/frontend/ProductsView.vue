@@ -24,7 +24,7 @@
         <div class="w-75 w-md-50 w-lg-25 d-flex justify-content-lg-end">
           <div class="w-75">
             <input type="text" class="form-control rounded-0 border-top-0 border-start-0 border-end-0 "
-              placeholder="請輸入關鍵字..." v-model="keyWord" @input="getMatchProducts">
+              placeholder="請輸入關鍵字..." @input="getMatchProducts">
           </div>
         </div>
       </div>
@@ -36,23 +36,23 @@
           <div class="row gy-48">
             <template v-if="matchProducts.length">
               <div class="col-md-4 col-lg-3 mb-48" v-for="item in matchProducts" :key="item.id">
-                <ProductsCardComponent :item="item"/>
+                <ProductsCardComponent :item="item" />
               </div>
-              <PaginationComponent :products="matchProducts" @update-products="updateProducts" ref="pagination"/>
+              <PaginationComponent :products="matchProducts" @update-products="updateProducts" ref="pagination" />
             </template>
             <template v-else-if="keyWord !== '' && !matchProducts.length">
-                <p class="mb-0 fs-6 text-center">抱歉，沒有符合「 {{ keyWord }} 」的餐點唷！</p>
+              <p class="mb-0 fs-6 text-center">抱歉，沒有符合「 {{ keyWord }} 」的餐點唷！</p>
             </template>
             <template v-else>
               <div class="col-md-4 col-lg-3 mb-48" v-for="item in sliceProducts" :key="item.id">
-                <ProductsCardComponent :item="item"/>
+                <ProductsCardComponent :item="item" />
               </div>
-              <PaginationComponent :products="products" @update-products="updateProducts" ref="pagination"/>
+              <PaginationComponent :products="products" @update-products="updateProducts" ref="pagination" />
             </template>
           </div>
         </div>
         <!-- 其他餐點 -->
-        <RouterView :matchProducts="matchProducts" :key-word="keyWord"/>
+        <RouterView :matchProducts="matchProducts" :key-word="keyWord" />
       </div>
     </div>
   </div>
@@ -66,6 +66,7 @@ import BannerComponent from '@/components/BannerComponent.vue';
 import ProductsCardComponent from '@/components/ProductsCardComponent.vue';
 import PaginationComponent from '@/components/PaginationComponent.vue';
 import LoadingComponent from '@/components/LoadingComponent.vue';
+import debounce from "lodash.debounce";
 
 export default {
   components: {
@@ -86,16 +87,9 @@ export default {
     updateProducts(data) {
       this.sliceProducts = data;
     },
-    getMatchProducts() {
-      if (this.keyWord.trim() !== '') {
-        this.matchProducts = this.products.filter(item => item.title.match(this.keyWord));
-      } else {
-        this.matchProducts = [];
-      };
-    },
     goTo(path, e) {
       e.target.blur(); // 修改路由時，取消nav-link殘留的focus樣式
-      if(this.$refs.pagination){
+      if (this.$refs.pagination) {
         this.resetPagination();
       };
       if (path === 'products') {
@@ -121,6 +115,17 @@ export default {
   },
   created() {
     this.getProducts();
+    this.getMatchProducts = debounce(e => {
+      this.keyWord = e.target.value;
+      if (this.keyWord.trim() !== '') {
+        this.matchProducts = this.products.filter(item => item.title.match(this.keyWord));
+      } else {
+        this.matchProducts = [];
+      };
+    }, 800);
+  },
+  beforeUnmount() {
+    this.getMatchProducts.cancel();
   },
 }
 </script>
